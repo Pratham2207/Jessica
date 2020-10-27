@@ -19,6 +19,7 @@ random = ("good evening sir, Jessica online, how may I help you?")
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices',voices[0].id)
+engine.setProperty('rate',180)
 
 def speak(audio):
     engine.say(audio)
@@ -60,6 +61,7 @@ if __name__ == "__main__":
                     query.replace("wikipedia","")
                     results = wikipedia.summary(query,sentences=2)
                     print(results)
+                    engine.setProperty('rate',150)
                     speak(results)
                 elif 'open youtube' in query or "open video online" in query:
                         webbrowser.open("www.youtube.com")
@@ -67,15 +69,11 @@ if __name__ == "__main__":
                 elif 'open google' in query or "search google" in query:
                         webbrowser.open("www.google.co.in")
                         speak("opening google")
-                elif 'bye' in query or 'shutdown'in query or 'quit'in query:
+                elif 'bye' in query:
                         speak("Bye sir, jessica going offline")
-                        exit()
                 elif "shutdown operating system" in query:
                         speak("Ok sir. Shutting down the system")
                         os.system('shutdown -s')
-                elif 'open github' in query:
-                    webbrowser.open("www.google.co.in.github.com")
-                    speak("Yes sir, opening your github")
                 elif 'open facebook' in query:
                     speak("Ok sir, opening facebook")
                     webbrowser.open("http://www.facebook.com/")
@@ -147,11 +145,11 @@ if __name__ == "__main__":
                     speak("good night sir, sweet dreams")
                     exit()
                 elif'sleep'in query:
-                    speak ("bye sir, going of")
+                    speak ("bye sir, going offline")
                     exit()
                 elif'here'in query or 'online'in query:
                     speak("yes sir, i am online, how may i help you?")
-                elif'speed'in query or ' net'in query:
+                elif'network speed'in query or 'open fast.com'in query or 'open fast'in query:
                     speak("sure sir, opening fast.com")
                     webbrowser.open("fast.com")
                 elif 'server'in query:
@@ -162,35 +160,27 @@ if __name__ == "__main__":
                     speak("sure thing, opening notepad")
                     codePath = "C:\\Users\\DELL\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Accessories"
                     os.startfile(codePath)
-                elif'open word folder'in query or 'open word'in query or 'word'in query:
+                elif'open word folder'in query or 'open word'in query:
                     speak("sure sir, opening word")
                     codePath = "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Microsoft Office"
                     os.startfile(codePath)
-                elif 'temperature'in query:
-                    try:
-                        response = app.query(query)
-                        print(next(response.results).text)
-                        speak(next(response.results).text)
-                    except:
-                        print("Internet connection error")
- 
-                if 'how are you'in query:
+                elif 'how are you'in query:
                     speak(" i am fine, how are you?")
                 elif'good afternoon'in query or 'afternoon'in query:
-                    speak("good afternoon sir, jessica ready for help")
-                elif 'good morning jessica'in query or 'good morning'in query or 'morning'in query:
+                    speak("good afternoon sir, Jessica ready for help")
+                elif 'good morning Jessica'in query or 'good morning'in query or 'morning'in query:
                     speak("good morning sir, how may i help you?")
-                elif'good evening jessica'in query or 'good evening'in query:
+                elif'good evening Jessica'in query or 'good evening'in query:
                     speak("good eveing sir, how was your day?")
                 elif'namaste'in query:
                     speak("namaste, looks like you are Indian")
-                elif'indian'in query:
+                elif' i am an indian'in query or 'i am indian' in query:
                     speak("nice to hear that, how do you want me to help you?")
                 elif'who is your owner'in query:
                     speak("my owner, is the greatest programmer in the world, Pratham bajajj")
                 elif"mother"in query or "mom"in query:
                     speak("My owner, Pratham, his mother is miss,Riya Bajajj")
-                elif'open rd'in query or 'open realtime database'in query or 'open database'in query or 'open firebase'in query:
+                elif'open rd'in query or 'open realtime database'in query or 'open database'in query or 'open firebase'in query or 'open real time database'in query:
                     speak("sure thing, opening realtime database firebase")
                     webbrowser.open("https://console.firebase.google.com/u/0/project/_/database/data")
                 elif'chat'in query:
@@ -198,15 +188,40 @@ if __name__ == "__main__":
                     webbrowser.open("https://web.whatsapp.com/")
                 elif'none'in query:
                     print("cannot understand")
-                elif'activate jessica'in query:
+                elif'deactivate Jessica'in query or 'deactivate'in query:
+                    speak("sure sir, going offline, have a nice day sir")
+                elif'jessica'in query or 'j'in query or 'J'in query or 'Jess'in query:
                     speak("Hello sir, Jessica online, how may I help you?")
-                else:
+                elif 'open wolfram aplha'in query or 'open wolframalpha'in query or 'open alpha'in query or 'open wall frame alpha'in query or 'open wallframe alpha'in query:
+                    speak("sure thing, opening wolfram alpha")
+                    webbrowser.open("https://www.wolframalpha.com/")
+                elif'open quiz'in query:
+                    speak("Yes sir, opening quizziz.com")
+                    webbrowser.open("https://quizizz.com/join#")
+                elif 'stats'in query or 'status'in query:
+                    speak("status good, problems none, ready for the updates and for your help")
+                elif'shutdown'in query or 'quit'in query or 'shut down'in query:
+                    speak("sure sir, going offline, have a nice day")
+                    exit()
+                elif'great'in query or 'perfect'in query or 'nice'in query or 'fantastic'in query or 'wonderful'in query:
+                    print("thank you sir")
+                elif'ok'in query:
+                    print("ok sir")
+                elif'temperature'in query:
                     try:
                         response = app.query(query)
                         print(next(response.results).text)
                         speak(next(response.results).text)
                     except:
-                        print("Internet connection issues")
+                        print("Net issues")
+                else:
+                    try:
+                        response = app.query(query)
+                        print(next(response.results).text)
+                        speak("searching details, please wait")
+                        speak(next(response.results).text)
+                    except:
+                        print("No results found")
 
-
+            
                         
